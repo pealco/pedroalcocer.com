@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Lightbox from '../components/Lightbox.astro';
+import { photos } from '../data/photos';
+---
+
+<BaseLayout title="Photography — Pedro Alcocer" description="Photography by Pedro Alcocer">
+  <section>
+    <h1 class="hero">Photography</h1>
+  </section>
+
+  <div class="gallery-wrapper">
+    <div class="gallery">
+      {photos.map((photo, i) => (
+        <button class="gallery-item" data-index={i} type="button" aria-label={`View: ${photo.alt}`}>
+          <img
+            src={photo.src}
+            alt={photo.alt}
+            width={photo.width}
+            height={photo.height}
+            loading="lazy"
+            style={`aspect-ratio: ${photo.width}/${photo.height};`}
+          />
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <Lightbox photos={photos} />
+
+  <script is:inline>
+    document.querySelector('.gallery').addEventListener('click', (e) => {
+      const item = e.target.closest('.gallery-item');
+      if (!item) return;
+      const index = parseInt(item.dataset.index, 10);
+      window.__lightboxShow(index);
+    });
+  </script>
+</BaseLayout>
+
+<style>
+  .hero {
+    font-family: 'Geist Line', monospace;
+    font-size: clamp(2.75rem, 8vw, 4.5rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 0;
+  }
+
+  .gallery-wrapper {
+    width: 100vw;
+    margin-left: calc(-1 * (100vw - 100%) / 2);
+    padding: 2rem 1.5rem 0;
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 0.75rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .gallery-item {
+    display: block;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    overflow: hidden;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    transition: opacity 0.2s;
+  }
+
+  .gallery-item:hover img {
+    opacity: 0.8;
+  }
+</style>
