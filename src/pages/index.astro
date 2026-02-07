@@ -10,10 +10,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 
 <BaseLayout title="Pedro Alcocer">
   <section>
-    <h1>Pedro Alcocer</h1>
-    <p style="margin-top: 0.5rem; color: var(--color-text-muted); max-width: 480px;">
-      Welcome to my corner of the internet. I write about programming, linguistics, and other things I find interesting.
-    </p>
+    <h1 class="hero">Pedro Alcocer</h1>
   </section>
 
   <section style="margin-top: 3rem;">
@@ -32,4 +29,14 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
       </p>
     )}
   </section>
+
+<style>
+  .hero {
+    font-family: 'Geist Line', monospace;
+    font-size: clamp(3.5rem, 10vw, 6rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 0;
+  }
+</style>
 </BaseLayout>
