@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+
+const projects = [
+  {
+    title: 'pedroalcocer.com',
+    description: 'This website. A minimalist blog built with Astro.',
+    tags: ['Astro', 'TypeScript'],
+    url: 'https://github.com/pealco/pedroalcocer.com',
+  },
+];
+---
+
+<BaseLayout title="Projects - Pedro Alcocer">
+  <h1>Projects</h1>
+  {projects.map((project) => (
+    <ProjectCard
+      title={project.title}
+      description={project.description}
+      tags={project.tags}
+      url={project.url}
+    />
+  ))}
+</BaseLayout>
