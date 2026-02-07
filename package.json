@@ -6,12 +6,16 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "publish-photo": "bash scripts/publish-photo.sh"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.15",
     "@astrojs/sitemap": "^3.7.0",
     "astro": "^5.17.1",
     "geist": "^1.7.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.63.0"
   }
 }
